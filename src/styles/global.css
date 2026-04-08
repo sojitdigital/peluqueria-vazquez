@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/300-italic.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+@import "@fontsource/raleway/300.css";
+@import "@fontsource/raleway/400.css";
+@import "@fontsource/raleway/500.css";
+
+@theme {
+  --color-dark-900: #141414;
+  --color-dark-800: #1e1e1e;
+  --color-dark-700: #2d2d2d;
+  --color-dark-600: #3a3a3a;
+  --color-silver-100: #f0f0f0;
+  --color-silver-200: #d4d4d4;
+  --color-silver-300: #a8a8a8;
+  --color-silver-400: #707070;
+  --color-gold: #c9a96e;
+  --color-gold-light: #e2c99a;
+
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Raleway', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* Scrollbar dorada */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #c9a96e; }
+
+body {
+  background-color: #141414;
+  color: #d4d4d4;
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
+/* Grain texture — fixed pseudo-element, never on scroll containers */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Ornamento — líneas + SVG diamond child */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.ornament::before,
+.ornament::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #c9a96e;
+  opacity: 0.6;
+}
+
+/* ── Accordion Gallery ──────────────────────────── */
+.accordion-gallery {
+  display: flex;
+  gap: 3px;
+  height: 320px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .accordion-gallery { height: 520px; }
+}
+
+.accordion-item {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-item:hover {
+  flex: 5;
+}
+
+.accordion-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transform: scale(1.08);
+  transition: opacity 0.5s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.accordion-item:hover img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.accordion-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.accordion-item:hover .accordion-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Galería hover (grid mobile) ────────────────────── */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #c9a96e;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.gallery-item:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.gallery-item img {
+  transition: transform 0.6s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ── CTA slide fill ───────────────────────────────── */
+.btn-slide {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-slide .slide-bg {
+  position: absolute;
+  inset: 0;
+  background: #c9a96e;
+  transform: translateX(-101%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-slide:hover .slide-bg {
+  transform: translateX(0);
+}
+.btn-slide .slide-label {
+  position: relative;
+  z-index: 1;
+  color: #c9a96e;
+  transition: color 0.3s ease;
+}
+.btn-slide:hover .slide-label {
+  color: #141414;
+}
+
+/* ── Stat item ──────────────────────────────────────── */
+.stat-item {
+  transition: border-color 0.3s ease;
+}
+.stat-item:hover {
+  border-color: #c9a96e !important;
+}
