@@ -20,8 +20,36 @@ const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmln
         <li><a href="#contacto"  class="hover:text-gold transition-colors duration-300">Turnos</a></li>
         <li><a href="#ubicacion" class="hover:text-gold transition-colors duration-300">Ubicación</a></li>
       </ul>
+
+      <!-- Hamburger button — mobile only -->
+      <button id="menu-toggle" class="flex md:hidden flex-col justify-center items-center gap-[6px] w-10 h-10 shrink-0 mr-4 z-[60]" aria-label="Abrir menú" aria-expanded="false">
+        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
+        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
+        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu"
+       class="fixed inset-0 z-[55] flex flex-col items-center justify-center pointer-events-none"
+       style="background: #141414; opacity: 0; transform: translateX(100%);">
+    <nav>
+      <ul class="flex flex-col items-center gap-10 text-center">
+        <li><a href="#inicio"    class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Inicio</a></li>
+        <li><a href="#servicios" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Servicios</a></li>
+        <li><a href="#galeria"   class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Galería</a></li>
+        <li><a href="#productos" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Productos</a></li>
+        <li><a href="#contacto"  class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Turnos</a></li>
+        <li><a href="#ubicacion" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Ubicación</a></li>
+      </ul>
+    </nav>
+    <div class="absolute bottom-10 flex items-center gap-3 opacity-40">
+      <div class="w-8 h-px bg-gold"></div>
+      <span class="text-xs tracking-[0.4em] uppercase text-silver-300 font-body">Vazquez Peluquería</span>
+      <div class="w-8 h-px bg-gold"></div>
+    </div>
+  </div>
 
   <!-- HERO — asimétrico, texto izquierda -->
   <section id="inicio" class="relative min-h-[100dvh] flex items-center overflow-hidden">
@@ -436,6 +464,47 @@ const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmln
       heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.1}px)`;
     }
   }, { passive: true });
+
+  // ── Mobile menu ───────────────────────────────────
+  const menuToggle  = document.getElementById('menu-toggle')  as HTMLButtonElement;
+  const mobileMenu  = document.getElementById('mobile-menu')  as HTMLElement;
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  let menuOpen = false;
+
+  function openMenu() {
+    menuOpen = true;
+    mobileMenu.style.pointerEvents = 'auto';
+    menuToggle.setAttribute('aria-expanded', 'true');
+    gsap.to(mobileMenu, { opacity: 1, x: 0, duration: 0.4, ease: 'power3.out' });
+    gsap.to('.mobile-nav-link', {
+      opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out', delay: 0.2
+    });
+    // bars → X
+    const bars = menuToggle.querySelectorAll('.menu-bar') as NodeListOf<HTMLElement>;
+    gsap.to(bars[0], { rotation: 45,  y: 8,  duration: 0.3 });
+    gsap.to(bars[1], { opacity: 0,           duration: 0.15 });
+    gsap.to(bars[2], { rotation: -45, y: -8, duration: 0.3 });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    gsap.to('.mobile-nav-link', { opacity: 0, y: 20, duration: 0.2 });
+    gsap.to(mobileMenu, {
+      opacity: 0, x: '100%', duration: 0.4, ease: 'power3.in', delay: 0.1,
+      onComplete: () => { mobileMenu.style.pointerEvents = 'none'; }
+    });
+    // X → bars
+    const bars = menuToggle.querySelectorAll('.menu-bar') as NodeListOf<HTMLElement>;
+    gsap.to(bars[0], { rotation: 0, y: 0, duration: 0.3 });
+    gsap.to(bars[1], { opacity: 1,        duration: 0.2 });
+    gsap.to(bars[2], { rotation: 0, y: 0, duration: 0.3 });
+    document.body.style.overflow = '';
+  }
+
+  menuToggle.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
   // ── Formulario → WhatsApp ──────────────────────────
   const form = document.getElementById('whatsapp-form') as HTMLFormElement;
