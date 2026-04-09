@@ -22,10 +22,12 @@ const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmln
       </ul>
 
       <!-- Hamburger button — mobile only -->
-      <button id="menu-toggle" class="flex md:hidden flex-col justify-center items-center gap-[6px] w-10 h-10 shrink-0 mr-4 z-[60]" aria-label="Abrir menú" aria-expanded="false">
-        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
-        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
-        <span class="menu-bar block w-6 bg-silver-100 origin-center" style="height: 2px;"></span>
+      <button id="menu-toggle"
+        style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:44px;height:44px;flex-shrink:0;margin-right:16px;cursor:pointer;position:relative;z-index:60;background:transparent;border:none;padding:0;"
+        aria-label="Abrir menú" aria-expanded="false">
+        <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
+        <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
+        <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
       </button>
     </div>
   </nav>
@@ -34,6 +36,17 @@ const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmln
   <div id="mobile-menu"
        class="fixed inset-0 z-[55] flex flex-col items-center justify-center pointer-events-none"
        style="background: #141414; opacity: 0; transform: translateX(100%);">
+
+    <!-- Botón cerrar -->
+    <button id="menu-close"
+      style="position:absolute;top:20px;right:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;"
+      aria-label="Cerrar menú">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="2" y1="2" x2="18" y2="18" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="2" x2="2" y2="18" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
     <nav>
       <ul class="flex flex-col items-center gap-10 text-center">
         <li><a href="#inicio"    class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Inicio</a></li>
@@ -503,7 +516,10 @@ const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmln
     document.body.style.overflow = '';
   }
 
+  const menuClose = document.getElementById('menu-close') as HTMLButtonElement;
+
   menuToggle.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+  menuClose.addEventListener('click', closeMenu);
   mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
   // ── Formulario → WhatsApp ──────────────────────────

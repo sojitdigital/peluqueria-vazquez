@@ -185,6 +185,14 @@ body::after {
   color: #141414;
 }
 
+/* ── Hamburger: visible solo en mobile ──────────────── */
+#menu-toggle {
+  display: flex;
+}
+@media (min-width: 768px) {
+  #menu-toggle { display: none; }
+}
+
 /* ── Stat item ──────────────────────────────────────── */
 .stat-item {
   transition: border-color 0.3s ease;
