@@ -1,0 +1,103 @@
+---
+const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 0L8 4L4 8L0 4Z" fill="#c9a96e" opacity="0.85"/></svg>`;
+---
+
+<section id="inicio" class="relative min-h-[100dvh] flex items-center overflow-hidden">
+
+  <div id="hero-bg" class="absolute inset-0 scale-110"
+       style="background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1800&q=80') center/cover no-repeat;">
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-900/85 to-dark-900/20"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-dark-900/70 via-transparent to-dark-900/50"></div>
+  <div class="absolute top-0 bottom-0 hidden lg:block w-px bg-gradient-to-b from-transparent via-gold/25 to-transparent" style="left: 7vw;"></div>
+
+  <div class="relative z-10 w-full pt-28 pb-20 px-6 md:pl-[10vw] md:pr-[38vw]">
+
+    <p id="hero-location" class="text-xs tracking-[0.5em] uppercase text-gold mb-8 font-body font-light opacity-0">
+      Neuquén Capital — Argentina
+    </p>
+
+    <h1 id="hero-title"
+        class="font-heading font-light text-silver-100 tracking-[0.18em] mb-4 leading-none"
+        style="font-size: clamp(3.5rem, 10vw, 9rem);">
+      VAZQUEZ
+    </h1>
+
+    <div id="hero-divider" class="flex items-center gap-4 mb-6 opacity-0">
+      <p class="text-xs tracking-[0.6em] uppercase text-silver-300 font-body font-light">Peluquería</p>
+      <div class="h-px bg-silver-300/50 w-20"></div>
+    </div>
+
+    <div id="hero-ornament" class="flex items-center gap-3 mb-8 opacity-0">
+      <div class="h-px bg-gold/30 w-10"></div>
+      <Fragment set:html={svgDiamond} />
+      <div class="h-px bg-gold/30 w-10"></div>
+    </div>
+
+    <p id="hero-desc" class="text-silver-200 font-light tracking-wide max-w-xs mb-12 text-sm leading-relaxed opacity-0">
+      Arte, cuidado y distinción<br/>exclusivo para mujeres.<br/>
+      <em class="text-silver-100" style="font-family:'Cormorant Garamond',serif; font-size:1.15em;">
+        Tres décadas de elegancia.
+      </em>
+    </p>
+
+    <a id="hero-cta" href="#contacto"
+       class="btn-slide border border-gold px-12 py-4 text-xs tracking-[0.3em] uppercase opacity-0">
+      <span class="slide-bg"></span>
+      <span class="slide-label">Reservar Turno</span>
+    </a>
+  </div>
+
+  <div id="hero-scroll" class="absolute bottom-10 flex flex-col items-start gap-2 opacity-0" style="left: 10vw;">
+    <span class="text-silver-400 text-xs tracking-widest uppercase">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-gold to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // ── GSAP: hero — letra por letra ───────────────────
+  const titleEl = document.getElementById('hero-title') as HTMLElement;
+  titleEl.innerHTML = 'VAZQUEZ'.split('')
+    .map(l => `<span class="hero-letter" style="opacity:0;display:inline-block">${l}</span>`)
+    .join('');
+
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  tl.fromTo('#hero-location',
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+    .fromTo('.hero-letter',
+      { opacity: 0, y: 55, rotationX: -75 },
+      { opacity: 1, y: 0, rotationX: 0, duration: 0.9, stagger: 0.07, ease: 'power3.out' },
+      '-=0.3')
+    .fromTo('#hero-divider',
+      { opacity: 0, x: -20 },
+      { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' },
+      '-=0.2')
+    .fromTo('#hero-ornament',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 },
+      '-=0.1')
+    .fromTo('#hero-desc',
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+      '-=0.2')
+    .fromTo('#hero-cta',
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+      '-=0.3')
+    .fromTo('#hero-scroll',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.6 },
+      '-=0.2');
+
+  // ── Parallax ───────────────────────────────────────
+  const heroBg = document.getElementById('hero-bg') as HTMLElement;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.1}px)`;
+    }
+  }, { passive: true });
+</script>

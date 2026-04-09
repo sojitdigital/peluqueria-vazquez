@@ -1,0 +1,61 @@
+---
+const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 0L8 4L4 8L0 4Z" fill="#c9a96e" opacity="0.85"/></svg>`;
+---
+
+<section id="galeria" class="py-28 bg-dark-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.4em] uppercase text-gold mb-4" data-aos="fade-up">Nuestro espacio</p>
+      <h2 class="font-heading text-5xl md:text-6xl font-light text-silver-100 mb-4" data-aos="fade-up" data-aos-delay="100">Galería</h2>
+      <div class="ornament justify-center" data-aos="fade-up" data-aos-delay="150">
+        <Fragment set:html={svgDiamond} />
+      </div>
+    </div>
+
+    <div class="accordion-gallery" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">Ambiente</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">El local</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">Atención</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">Color</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">Peinado</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&q=80" alt="Peluquería" />
+        <div class="accordion-caption">
+          <p class="text-xs tracking-widest uppercase text-silver-200">Resultado</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

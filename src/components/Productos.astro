@@ -1,0 +1,45 @@
+---
+const svgDiamond = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 0L8 4L4 8L0 4Z" fill="#c9a96e" opacity="0.85"/></svg>`;
+---
+
+<section id="productos" class="py-28 bg-dark-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="md:pl-[10vw]">
+      <p class="text-xs tracking-[0.4em] uppercase text-gold mb-4" data-aos="fade-up">Elaboración propia</p>
+      <h2 class="font-heading text-5xl md:text-6xl font-light text-silver-100 mb-4" data-aos="fade-up" data-aos-delay="100">
+        Nuestros Productos
+      </h2>
+      <div class="ornament" data-aos="fade-up" data-aos-delay="150">
+        <Fragment set:html={svgDiamond} />
+      </div>
+      <p class="text-silver-400 max-w-lg mb-16 font-light text-sm leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+        Cremas nutricionales desarrolladas con años de experiencia.<br/>
+        Disponibles exclusivamente en nuestro local.
+      </p>
+    </div>
+
+    <div class="group flex flex-col md:flex-row gap-10 border-t border-dark-600 pt-12 hover:border-gold transition-colors duration-500"
+         data-aos="fade-up" data-aos-delay="100">
+
+      <div class="relative w-full md:w-64 h-64 shrink-0 bg-dark-800 border border-dark-600 group-hover:border-gold transition-colors duration-500 flex items-center justify-center overflow-hidden">
+        <div class="absolute top-3 left-3 w-5 h-5 border-t border-l border-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute top-3 right-3 w-5 h-5 border-t border-r border-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <p class="text-silver-400 text-xs tracking-widest text-center px-4">Foto<br/>próximamente</p>
+      </div>
+
+      <div class="flex flex-col justify-center">
+        <p class="text-xs tracking-[0.4em] uppercase text-gold mb-3">Producto destacado</p>
+        <h3 class="font-heading text-3xl md:text-4xl text-silver-100 font-light mb-4">Crema Nutricional</h3>
+        <p class="text-silver-400 font-light text-sm leading-relaxed max-w-md mb-6">
+          Formulada con ingredientes seleccionados por nuestra experiencia de 30 años. Una crema nutricional de cuidado capilar que solo encontrarás en nuestro local.
+        </p>
+        <p class="text-xs tracking-widest uppercase text-silver-400 border-t border-dark-600 pt-4">
+          Disponible exclusivamente en local — Hipólito Yrigoyen 220
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>

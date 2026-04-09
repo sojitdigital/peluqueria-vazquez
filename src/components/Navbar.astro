@@ -1,0 +1,123 @@
+---
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="height: 72px; background: transparent;">
+  <div class="h-full flex items-center">
+    <img id="nav-logo" src="/images/logo.jpeg" alt="Vazquez Peluquería"
+         class="object-contain object-left transition-all duration-500"
+         style="flex: 1; height: 100%; max-height: 72px;" />
+    <ul class="hidden md:flex gap-8 text-xs tracking-[0.25em] uppercase text-silver-300 font-body shrink-0 pr-10">
+      <li><a href="#inicio"    class="hover:text-gold transition-colors duration-300">Inicio</a></li>
+      <li><a href="#servicios" class="hover:text-gold transition-colors duration-300">Servicios</a></li>
+      <li><a href="#galeria"   class="hover:text-gold transition-colors duration-300">Galería</a></li>
+      <li><a href="#productos" class="hover:text-gold transition-colors duration-300">Productos</a></li>
+      <li><a href="#contacto"  class="hover:text-gold transition-colors duration-300">Turnos</a></li>
+      <li><a href="#ubicacion" class="hover:text-gold transition-colors duration-300">Ubicación</a></li>
+    </ul>
+
+    <!-- Hamburger button — mobile only -->
+    <button id="menu-toggle"
+      style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:44px;height:44px;flex-shrink:0;margin-right:16px;cursor:pointer;position:relative;z-index:60;background:transparent;border:none;padding:0;"
+      aria-label="Abrir menú" aria-expanded="false">
+      <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
+      <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
+      <span class="menu-bar" style="display:block;width:24px;height:3px;background:#ffffff;border-radius:2px;transform-origin:center;"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu"
+     class="fixed inset-0 z-[55] flex flex-col items-center justify-center pointer-events-none"
+     style="background: #141414; opacity: 0; transform: translateX(100%);">
+
+  <button id="menu-close"
+    style="position:absolute;top:20px;right:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;"
+    aria-label="Cerrar menú">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="2" y1="2" x2="18" y2="18" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="18" y1="2" x2="2" y2="18" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <nav>
+    <ul class="flex flex-col items-center gap-10 text-center">
+      <li><a href="#inicio"    class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Inicio</a></li>
+      <li><a href="#servicios" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Servicios</a></li>
+      <li><a href="#galeria"   class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Galería</a></li>
+      <li><a href="#productos" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Productos</a></li>
+      <li><a href="#contacto"  class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Turnos</a></li>
+      <li><a href="#ubicacion" class="mobile-nav-link font-heading text-4xl font-light text-silver-200 tracking-[0.15em] hover:text-gold transition-colors duration-300" style="opacity:0;transform:translateY(20px)">Ubicación</a></li>
+    </ul>
+  </nav>
+  <div class="absolute bottom-10 flex items-center gap-3 opacity-40">
+    <div class="w-8 h-px bg-gold"></div>
+    <span class="text-xs tracking-[0.4em] uppercase text-silver-300 font-body">Vazquez Peluquería</span>
+    <div class="w-8 h-px bg-gold"></div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // ── NAVBAR: transparente → sólido ─────────────────
+  const navbar  = document.getElementById('navbar')   as HTMLElement;
+  const navLogo = document.getElementById('nav-logo') as HTMLImageElement;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.style.backgroundColor = '#2d2d2d';
+      navbar.style.boxShadow       = '0 2px 30px rgba(0,0,0,0.6)';
+      navbar.style.borderBottom    = '1px solid #3a3a3a';
+      navbar.style.height          = '90px';
+      navLogo.style.maxHeight      = '90px';
+    } else {
+      navbar.style.backgroundColor = 'transparent';
+      navbar.style.boxShadow       = 'none';
+      navbar.style.borderBottom    = 'none';
+      navbar.style.height          = '72px';
+      navLogo.style.maxHeight      = '72px';
+    }
+  }, { passive: true });
+
+  // ── Mobile menu ────────────────────────────────────
+  const menuToggle  = document.getElementById('menu-toggle')  as HTMLButtonElement;
+  const menuClose   = document.getElementById('menu-close')   as HTMLButtonElement;
+  const mobileMenu  = document.getElementById('mobile-menu')  as HTMLElement;
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  let menuOpen = false;
+
+  function openMenu() {
+    menuOpen = true;
+    mobileMenu.style.pointerEvents = 'auto';
+    menuToggle.setAttribute('aria-expanded', 'true');
+    gsap.to(mobileMenu, { opacity: 1, x: 0, duration: 0.4, ease: 'power3.out' });
+    gsap.to('.mobile-nav-link', {
+      opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out', delay: 0.2
+    });
+    const bars = menuToggle.querySelectorAll('.menu-bar') as NodeListOf<HTMLElement>;
+    gsap.to(bars[0], { rotation: 45,  y: 8,  duration: 0.3 });
+    gsap.to(bars[1], { opacity: 0,           duration: 0.15 });
+    gsap.to(bars[2], { rotation: -45, y: -8, duration: 0.3 });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    gsap.to('.mobile-nav-link', { opacity: 0, y: 20, duration: 0.2 });
+    gsap.to(mobileMenu, {
+      opacity: 0, x: '100%', duration: 0.4, ease: 'power3.in', delay: 0.1,
+      onComplete: () => { mobileMenu.style.pointerEvents = 'none'; }
+    });
+    const bars = menuToggle.querySelectorAll('.menu-bar') as NodeListOf<HTMLElement>;
+    gsap.to(bars[0], { rotation: 0, y: 0, duration: 0.3 });
+    gsap.to(bars[1], { opacity: 1,        duration: 0.2 });
+    gsap.to(bars[2], { rotation: 0, y: 0, duration: 0.3 });
+    document.body.style.overflow = '';
+  }
+
+  menuToggle.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+  menuClose.addEventListener('click', closeMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+</script>
