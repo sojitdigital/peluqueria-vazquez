@@ -13,9 +13,62 @@ const { title = 'Vazquez Peluquería — Neuquén' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Vazquez Peluquería — 30 años de experiencia en Neuquén Capital. Servicios exclusivos para mujeres. Turnos y consultas por WhatsApp." />
-    <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
+
+    <!-- SEO Básico -->
     <title>{title}</title>
+    <meta name="description" content="Vazquez Peluquería en Neuquén Capital. 30 años de experiencia en corte, color y peinado exclusivo para mujeres. Turnos por WhatsApp. Hipólito Yrigoyen 220." />
+    <meta name="keywords" content="peluquería Neuquén, Vazquez peluquería, peluquería mujer Neuquén, corte de pelo Neuquén, coloración Neuquén, peinado Neuquén, Hipólito Yrigoyen 220" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://peluqueria-vazquez.vercel.app/" />
+    <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
+
+    <!-- Open Graph (redes sociales) -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:title" content="Vazquez Peluquería — Neuquén" />
+    <meta property="og:description" content="30 años de experiencia en corte, color y peinado exclusivo para mujeres. Turnos por WhatsApp. Hipólito Yrigoyen 220, Neuquén Capital." />
+    <meta property="og:url" content="https://peluqueria-vazquez.vercel.app/" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Vazquez Peluquería" />
+
+    <!-- Geo / Localización -->
+    <meta name="geo.region" content="AR-Q" />
+    <meta name="geo.placename" content="Neuquén, Argentina" />
+    <meta name="geo.position" content="-38.9516;-68.9868" />
+    <meta name="ICBM" content="-38.9516, -68.9868" />
+
+    <!-- JSON-LD: Schema HairSalon (CRÍTICO para Google local) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HairSalon",
+      "name": "Vazquez Peluquería",
+      "description": "Peluquería exclusiva para mujeres con 30 años de experiencia en Neuquén Capital. Especialistas en corte, color y peinado.",
+      "url": "https://peluqueria-vazquez.vercel.app/",
+      "telephone": "+542994286429",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hipólito Yrigoyen 220",
+        "addressLocality": "Neuquén",
+        "addressRegion": "Neuquén",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -38.9516,
+        "longitude": -68.9868
+      },
+      "priceRange": "$$",
+      "currenciesAccepted": "ARS",
+      "openingHours": "Mo-Fr 09:00-19:00, Sa 09:00-14:00",
+      "hasMap": "https://www.google.com/maps?q=Hipólito+Yrigoyen+220+Neuquén",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+542994286429",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish"
+      }
+    }
+    </script>
   </head>
   <body class="bg-dark-900 text-silver-200 font-body antialiased">
     <slot />
